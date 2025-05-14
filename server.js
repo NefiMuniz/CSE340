@@ -12,24 +12,23 @@ const app = express();
 const static = require("./routes/static");
 
 /* ***********************
+ * View Engine and Templates
+ *************************/
+app.set("view engine", "ejs");
+app.use(expressLayouts);
+app.set("layout", "./layouts/layout");
+
+/* ***********************
  * Routes
  *************************/
 app.use(static);
 // Index route
 app.get("/", function (req, res) {
   console.log("Layout being used: ", app.get("layout"));
-  // No server.js, adicione:
   console.log("View engine:", app.get("view engine"));
-  console.log("Views path:", app.get("views"));
   res.render("index", { title: "HomePage" });
 });
 
-/* ***********************
- * View Engine and Templates
- *************************/
-app.set("view engine", "ejs");
-app.use(expressLayouts);
-app.set("layout", "./layouts/layout");
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file
