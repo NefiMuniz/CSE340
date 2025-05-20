@@ -1,4 +1,13 @@
--- Data for table `inventory`
+-- Data for table "classification"
+
+INSERT INTO public.classification (classification_name)
+VALUES ('Custom'),
+('Sport'),
+('SUV'),
+('Truck'),
+('Sedan');
+
+-- Data for table "inventory"
 
 INSERT INTO public.inventory (
     inv_make,

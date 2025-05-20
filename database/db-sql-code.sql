@@ -12,12 +12,6 @@ CREATE TABLE IF NOT EXISTS public.classification
     CONSTRAINT classification_pk PRIMARY KEY (classification_id)
 );
 
-INSERT INTO public.classification (classification_name)
-VALUES ('Custom'),
-('Sport'),
-('SUV'),
-('Truck'),
-('Sedan');
 
 CREATE TABLE IF NOT EXISTS public.inventory
 (
