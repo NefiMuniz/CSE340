@@ -274,6 +274,15 @@ ul#inv-display > li div.namePrice {
   text-shadow: 0 0 25px var(--secondary-bg), 0 0 3px black;
 }
 
+.error-display img {
+  max-width: 100%;
+  padding: 2px;
+}
+
+.error-display {
+  text-align: center;
+}
+
 @media screen and (min-width: 700px) {
   body {
     display: flex;
