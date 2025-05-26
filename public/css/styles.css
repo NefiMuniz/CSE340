@@ -245,8 +245,10 @@ ul#inv-display {
 }
 
 ul#inv-display > li {
-  display: grid;
-  grid-template-columns: 1fr;
+  /* display: grid; */
+  display: flex;
+  /* grid-template-columns: 1fr; */
+  flex-direction: column;
   width: 100%;
   max-width: 350px;
   background-color: var(--secondary-bg);
@@ -256,22 +258,39 @@ ul#inv-display > li {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.173);
 }
 ul#inv-display > li a {
-  grid-column: 1/2;
-  grid-row: 1/2;
+  /* grid-column: 1/2; */
+  /* grid-row: 1/2; */
   display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
 }
 ul#inv-display > li img {
   width: 100%;
+  height: auto;
+  display: block;
 }
 ul#inv-display > li div.namePrice {
   padding: 1rem;
-  grid-column: 1/2;
-  grid-row: 1/2;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  text-shadow: 0 0 25px var(--secondary-bg), 0 0 3px black;
+  /* grid-column: 1/2; */
+  /* grid-row: 1/2; */
+  /* z-index: 2; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: end; */
+  /* text-shadow: 0 0 25px var(--secondary-bg), 0 0 3px black; */
+  text-align: center;
+  background-color: var(--secondary-bg);
+  color: var(--secondary-fg);
+}
+ul#inv-display > li h2 {
+  margin: 0.25rem 0;
+  font-size: 1.25rem;
+}
+ul#inv-display > li span {
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 .error-display img {
