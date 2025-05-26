@@ -35,6 +35,11 @@ app.get("/", utilities.handleErrors(baseController.buildHome));
 // Inventory routes
 app.use("/inv", inventoryRoute);
 
+// Intentional 500 Error Route
+app.get("/error", (req, res, next) => {
+  next(new Error("Intentional server crash."));
+});
+
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({ status: 404, message: "Sorry, we appear to have lost that page." });

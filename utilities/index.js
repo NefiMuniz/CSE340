@@ -78,6 +78,32 @@ Util.buildClassificationGrid = async function (data) {
   return grid;
 };
 
+/**
+ * Build a single detail element from data
+ */
+Util.buildVehicleDetail = async function (data) {
+  let detailHTML = "";
+  console.dir({ data });
+  if (data) {
+    detailHTML = `
+      <section class="vehicle-detail">
+        <div class="vehicle-detail-image">
+          <img src="${data.inv_image}" alt="Image of ${data.inv_make} ${data.inv_model}">
+        </div>
+        <div class="vehicle-detail-info">
+          <h2>${data.inv_year} ${data.inv_make} ${data.inv_model}</h2>
+          <h3>Price: $${Number(data.inv_price).toLocaleString()}</h3>
+          <p><strong>Mileage:</strong> ${Number(data.inv_miles).toLocaleString()} miles</p>
+          <p><strong>Color:</strong> ${data.inv_color}</p>
+          <p><strong>Description:</strong> ${data.inv_description}</p>
+        </div>
+      </section>`;
+  } else {
+    detailHTML = `<p>Sorry, vehicle details could not be found.</p>`;
+  }
+  return detailHTML;
+};
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for
