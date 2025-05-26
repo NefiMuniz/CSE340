@@ -1,5 +1,9 @@
 <div class="error-display">
-  <h2><%- title %></h2>
+  <% if (title === 404) { %>
+    <h2><%- title %> - Not Found</h2>
+  <% } else { %>
+    <h2><%- title %></h2>
+  <% } %>
   <p><%- message %></p>
   <!-- <img src="/images/site/error.png" alt="error"> -->
   <% if (title === 404) { %>
