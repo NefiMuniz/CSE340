@@ -1,0 +1,23 @@
+<h1><%- title %></h1>
+<%- messages() %>
+
+
+
+<form class="input-box" id="loginForm" action="/account/login" method="post">
+    <label>Email<input type="email" name="account_email" required autocomplete="email" value="<%= locals.account_email %>"></label>
+    <label>Password<input type="password" name="account_password" id="password" required autocomplete="current-password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{12,}$">
+        
+        <span id="togglePassword" class="toggle-password" role="button" tabindex="0" title="Show/hide password">👁️</span>
+        
+        <ul id="password-requirements">
+            <li id="length" class="invalid">✔ At least 12 characters</li>
+            <li id="uppercase" class="invalid">✔ At least one uppercase letter</li>
+            <li id="number" class="invalid">✔ At least one number</li>
+            <li id="special" class="invalid">✔ At least one special character</li>
+        </ul>
+    </label>
+    <input type="submit" value="LOGIN">
+    <span>No account? <a href="/account/registration">Sign up</a></span>
+</form>
+
+<script src="/js/password.js"></script>

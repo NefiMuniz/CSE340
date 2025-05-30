@@ -13,6 +13,7 @@ const env = require("dotenv").config();
 const app = express();
 const static = require("./routes/static");
 const inventoryRoute = require("./routes/inventoryRoute");
+const accountRoute = require("./routes/accountRoute");
 const baseController = require("./controllers/baseController");
 const utilities = require("./utilities/");
 
@@ -57,6 +58,8 @@ app.use(static);
 app.get("/", utilities.handleErrors(baseController.buildHome));
 // Inventory routes
 app.use("/inv", inventoryRoute);
+// Account routes
+app.use("/account", accountRoute);
 
 // Intentional 500 Error Route
 app.get("/error", (req, res, next) => {
