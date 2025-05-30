@@ -7,6 +7,7 @@ const utilities = require("../utilities");
 
 // router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagementView));
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
-// router.post("/login", reg)
+
+router.get("/registration", utilities.handleErrors(accountController.buildRegister));
 
 module.exports = router;
