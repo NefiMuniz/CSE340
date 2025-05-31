@@ -1,4 +1,8 @@
 const invModel = require("../models/inventory-model");
+const jwt = require("jsonwebtoken");
+
+require("dotenv").config();
+
 const Util = {};
 
 /* ************************
@@ -110,5 +114,38 @@ Util.buildVehicleDetail = async function (data) {
  **************************************** */
 Util.handleErrors = (fn) => (req, res, next) =>
   Promise.resolve(fn(req, res, next)).catch(next);
+
+/**
+ * Function to update the browser cookie.
+ * @param {object} accountData
+ * @param {import("express").Response} res
+ */
+
+Util.updateCookie = (accountData, res) => {
+  const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: 3600,
+  });
+  if (process.env.NODE_ENV === "development") {
+    res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 });
+  } else {
+    res.cookie("jwt", accessToken, {
+      httpOnly: true,
+      secure: true,
+      maxAge: 3600 * 1000,
+    });
+  }
+};
+
+/* ****************************************
+ *  Check Login
+ * ************************************ */
+Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next();
+  } else {
+    req.flash("notice", "Please log in.");
+    return res.redirect("/account/login");
+  }
+};
 
 module.exports = Util;
