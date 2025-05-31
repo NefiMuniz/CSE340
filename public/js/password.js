@@ -3,6 +3,7 @@ const passwordHide = document.querySelector("#passwordHide");
 
 const lengthReq = document.getElementById("length");
 const uppercaseReq = document.getElementById("uppercase");
+const lowercaseReq = document.getElementById("lowercase");
 const numberReq = document.getElementById("number");
 const specialReq = document.getElementById("special");
 
@@ -14,6 +15,9 @@ passwordInput.addEventListener("input", () => {
 
   uppercaseReq.classList.toggle("valid", /[A-Z]/.test(value));
   uppercaseReq.classList.toggle("invalid", !/[A-Z]/.test(value));
+
+  lowercaseReq.classList.toggle("valid", /[a-z]/.test(value));
+  lowercaseReq.classList.toggle("invalid", !/[a-z]/.test(value));
 
   numberReq.classList.toggle("valid", /\d/.test(value));
   numberReq.classList.toggle("invalid", !/\d/.test(value));

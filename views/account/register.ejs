@@ -1,21 +1,29 @@
 <h1><%- title %></h1>
 <%- messages() %>
-
-
+<% if (errors) { %>
+    <ul class="notice">
+        <% errors.array().forEach(error=> { %>
+            <li>
+                <%= error.msg %>
+            </li>
+            <% }) %>
+    </ul>
+    <% }%>
 
 <form class="input-box" id="registerForm" action="/account/register" method="post">
     <label>First name<input type="text" name="account_firstname" required autocomplete="given-name" value="<%= locals.account_firstname %>" placeholder="Enter your first name..."></label>
     <label>Last name<input type="text" name="account_lastname" required autocomplete="family-name" value="<%= locals.account_lastname %>" placeholder="Enter your last name..."></label>
     <label>Email<input type="email" name="account_email" required autocomplete="email" value="<%= locals.account_email %>" placeholder="Enter a valid email..."></label>
-    <label>Password<input type="password" name="account_password" id="password" required autocomplete="current-password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{12,}$" placeholder="Choose your password...">
+    <label>Password<input type="password" name="account_password" id="password" required autocomplete="current-password" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\w\s]).{12,}$" placeholder="Choose your password...">
         
         <span id="togglePassword" class="toggle-password" role="button" tabindex="0" title="Show/hide password">👁️</span>
         
         <ul id="password-requirements">
-            <li id="length" class="invalid">✔ At least 12 characters</li>
             <li id="uppercase" class="invalid">✔ At least one uppercase letter</li>
+            <li id="lowercase" class="invalid">✔ At least one lowercase letter</li>
             <li id="number" class="invalid">✔ At least one number</li>
             <li id="special" class="invalid">✔ At least one special character</li>
+            <li id="length" class="invalid">✔ At least 12 characters</li>
         </ul>
     </label>
     <input type="submit" value="REGISTER">

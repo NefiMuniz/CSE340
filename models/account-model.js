@@ -20,4 +20,24 @@ async function registerAccount(
   return result;
 }
 
-module.exports = { registerAccount };
+/* **********************
+ *   Check for existing email
+ * ********************* */
+async function checkExistingEmail(account_email, excludedEmail = null) {
+  try {
+    if(excludedEmail) {
+      const sql = "SELECT * FROM account WHERE account_email = $1 AND account_email != $2";
+      const email = await pool.query(sql, [account_email, excludedEmail]);
+      return email.rowCount;
+    }
+    else {
+      const sql = "SELECT * FROM account WHERE account_email = $1"; 
+      const email = await pool.query(sql, [account_email]);
+      return email.rowCount;
+    }
+  } catch (error) {
+    return error.message;
+  }
+}
+
+module.exports = { registerAccount, checkExistingEmail };
