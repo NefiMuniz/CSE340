@@ -432,6 +432,33 @@ section.vehicle-detail {
   color: #aaa;
 }
 
+/* Forms Requirements */
+.requirement {
+  display: block;
+  font-size: 0.85rem;
+  padding-left: 1.2rem;
+  margin-top: 0.25rem;
+  position: relative;
+  color: #aaa;
+}
+.requirement::before {
+  content: "❌";
+  position: absolute;
+  left: 0;
+  color: red;
+}
+.requirement.valid {
+  color: rgb(0, 180, 0);
+}
+.requirement.valid::before {
+  content: "✔";
+  color: rgb(0, 180, 0);
+}
+.requirement.invalid {
+  color: #aaa;
+}
+
+
 .toggle-password {
   position: absolute;
   right: 0.75rem;
