@@ -1,0 +1,70 @@
+<h1><%- title %></h1>
+<%- messages() %>
+  
+<% if (errors && errors.length > 0) { %>
+    <ul class="notice">
+      <% errors.forEach(function(error) { %>
+        <li><%= error %></li>
+      <% }); %>
+    </ul>
+<% } %>
+
+
+        <form class="input-box" action="/inv/update" method="post">
+          <label>Make
+            <input type="text" name="inv_make" value="<%- locals.inv_make %>" placeholder="Ford" minlength="2" maxlength="50" required>
+            <span class="requirement invalid">2-50 characters</span>
+            </label>
+
+          <label>Model
+            <input type="text" name="inv_model" value="<%- locals.inv_model %>" placeholder="Mustang" minlength="2" maxlength="50"required>
+            <span class="requirement invalid">2-50 characters</span>
+          </label>
+
+          <label>Year
+            <input type="number" name="inv_year" value="<%- locals.inv_year %>" placeholder="2001" min="1900" max="2030" required>
+            <span class="requirement invalid">Required. 1900-2030</span>
+          </label>
+
+          <label>Description
+            <textarea name="inv_description" placeholder="Fancy and red." minlength="2" maxlength="100" rows="5" required><%- locals.inv_description %></textarea>
+            <span class="requirement invalid">2-100 characters</span>
+          </label>
+
+          <label>Image
+            <input type="text" name="inv_image" placeholder="/images/vehicles/no-image.png" value="<%- locals.inv_image %>" required>
+            <span class="requirement invalid">Required field</span>
+            </label>
+
+          <label>Thumbnail
+            <input type="text" name="inv_thumbnail" placeholder="/images/vehicles/no-image-tn.png" value="<%- locals.inv_thumbnail %>" required>
+            <span class="requirement invalid">Required field</span>
+          </label>
+
+          <label>Price
+            <input type="number" name="inv_price" value="<%- locals.inv_price %>" placeholder="15000" min="1" required>
+            <span class="requirement invalid">Numeric only, no comma, > 0.</span>
+          </label>
+
+          <label>Miles
+            <input type="number" name="inv_miles" value="<%- locals.inv_miles %>" placeholder="100000" min="1" required>
+            <span class="requirement invalid">Numeric only, no comma, > 0.</span>
+          </label>
+
+          <label>Color
+            <input type="text" name="inv_color" value="<%- locals.inv_color %>" placeholder="Red" required>
+            <span class="requirement invalid">Required field</span>
+          </label>
+
+          <label>Classification
+            <%- classifications %>
+            <span class="requirement invalid">Required field</span>
+          </label>
+
+          <input type="submit" name="submit" value="Update Vehicle">
+          <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+            <% } %>>
+        </form>
+
+        <script src="/js/forms.js"></script>
+        <script src="/js/inv-update.js"></script>

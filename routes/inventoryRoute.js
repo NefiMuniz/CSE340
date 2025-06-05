@@ -28,6 +28,15 @@ router.post(
   "/add-inventory",
   utilities.handleErrors(invController.addInventory)
 );
+// Inventory Edit route
+router.get(
+  "/edit/:inventoryId",
+  utilities.handleErrors(invController.buildEditInventory)
+);
+router.post(
+  "/update/",
+  utilities.handleErrors(invController.updateInventory)
+);
 
 // AJAX inventory api call route
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
