@@ -1,6 +1,7 @@
 require("dotenv").config();
 const utilities = require("../utilities");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const accountModel = require("../models/account-model");
 
 /* ****************************************
@@ -38,8 +39,10 @@ async function accountLogin(req, res) {
       delete accountData.account_password;
       
       utilities.updateCookie(accountData, res);
-     
-      return res.redirect("/account/login");
+
+      return res.redirect("/account/");
+      // return res.redirect("/account/login");
+
     } else {
       req.flash("notice", "Please check your password and try again.");
       res.redirect("/account/login");
@@ -112,4 +115,16 @@ async function registerAccount(req, res) {
   }
 }
 
-module.exports = { buildLogin, accountLogin, buildRegister, registerAccount };
+/* ****************************************
+*  Deliver management view
+* *************************************** */
+async function buildManagement(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/account-management", {
+    title: "Account Management",
+    nav,
+    errors: null,
+  })
+}
+
+module.exports = { buildLogin, accountLogin, buildRegister, registerAccount, buildManagement };

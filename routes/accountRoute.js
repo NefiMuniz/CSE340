@@ -5,6 +5,7 @@ const accountController = require("../controllers/accountController");
 const utilities = require("../utilities");
 const regValidate = require("../utilities/account-validation");
 
+// Login Routes
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
 router.post(
   "/login",
@@ -12,8 +13,13 @@ router.post(
   regValidate.checkLoginData,
   utilities.handleErrors(accountController.accountLogin)
 );
+router.get(
+  "/",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildManagement)
+);
 
-// Registration routes
+// Registration Routes
 router.get(
   "/registration",
   utilities.handleErrors(accountController.buildRegister)
