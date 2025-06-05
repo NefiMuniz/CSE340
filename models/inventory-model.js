@@ -125,8 +125,7 @@ async function updateInventory(
   inv_color,
   classification_id
 ) {
-  const sql =
-    `UPDATE public.inventory SET
+  const sql = `UPDATE public.inventory SET
     inv_make = $1,
     inv_model = $2,
     inv_year = $3,
@@ -159,6 +158,18 @@ async function updateInventory(
   }
 }
 
+/*******************************
+ * Delete Inventory Data
+ *******************************/
+async function deleteInventory(inv_id) {
+  const sql = "DELETE FROM inventory WHERE inv_id = $1";
+  try {
+    return await pool.query(sql, [inv_id]);
+  } catch (error) {
+    console.error("deleteInventory error. " + error);
+  }
+}
+
 module.exports = {
   getClassifications,
   getInventoryByClassificationId,
@@ -166,4 +177,5 @@ module.exports = {
   addClassification,
   addInventory,
   updateInventory,
+  deleteInventory,
 };

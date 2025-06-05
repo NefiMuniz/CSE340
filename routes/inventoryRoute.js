@@ -38,6 +38,13 @@ router.post(
   utilities.handleErrors(invController.updateInventory)
 );
 
+// Inventory Delete Route
+router.get(
+  "/delete/:inventoryId",
+  utilities.handleErrors(invController.buildDeleteInventory)
+);
+router.post("/delete/", utilities.handleErrors(invController.deleteInventory));
+
 // AJAX inventory api call route
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 

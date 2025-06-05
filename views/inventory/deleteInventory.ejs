@@ -1,0 +1,38 @@
+<h1><%- title %></h1>
+<%- messages() %>
+  
+<% if (errors && errors.length > 0) { %>
+    <ul class="notice">
+      <% errors.forEach(function(error) { %>
+        <li><%= error %></li>
+      <% }); %>
+    </ul>
+<% } %>
+
+
+        <form class="input-box" action="/inv/delete" method="post">
+          <label>Make
+            <input type="text" name="inv_make" value="<%- locals.inv_make %>" readonly>
+            </label>
+
+          <label>Model
+            <input type="text" name="inv_model" value="<%- locals.inv_model %>" readonly>
+          </label>
+
+          <label>Year
+            <input type="number" name="inv_year" value="<%- locals.inv_year %>" readonly>
+          </label>
+
+          <label>Price
+            <input type="number" name="inv_price" value="<%- locals.inv_price %>" readonly>
+          </label>
+
+          <label>Color
+            <input type="text" name="inv_color" value="<%- locals.inv_color %>" readonly>
+          </label>
+
+          <p>Confirm Deletion - This is permanent.</p>
+          <input type="submit" name="submit" value="Delete Vehicle">
+          <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+            <% } %>>
+        </form>
