@@ -18,6 +18,8 @@ const accountRoute = require("./routes/accountRoute");
 const baseController = require("./controllers/baseController");
 const utilities = require("./utilities/");
 const bodyParser = require("body-parser");
+// Enhancement: Review
+const reviewRoute = require("./routes/reviewRoute");
 
 /* ***********************
  * Middleware
@@ -68,6 +70,9 @@ app.use("/inv", inventoryRoute);
 // Account routes
 app.use("/account", accountRoute);
 
+// Enhancement: Vehicle Review
+app.use("/reviews", reviewRoute);
+
 // Intentional 500 Error Route
 app.get("/error", (req, res, next) => {
   next(new Error("Intentional server crash."));
@@ -77,6 +82,7 @@ app.get("/error", (req, res, next) => {
 app.use(async (req, res, next) => {
   next({ status: 404, message: "Sorry, we appear to have lost that page." });
 });
+
 
 /* ***********************
  * Express Error Handler

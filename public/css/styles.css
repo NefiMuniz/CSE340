@@ -458,6 +458,14 @@ section.vehicle-detail {
   color: #aaa;
 }
 
+.delete-btn {
+  background: none;
+  border: none;
+  color: red;
+  font-weight: bold;
+  font-size: 1.2em;
+  cursor: pointer;
+}
 
 .toggle-password {
   position: absolute;

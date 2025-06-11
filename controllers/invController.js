@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model");
+const reviewModel = require("../models/review-model");
 const utilities = require("../utilities/");
 
 const invCont = {};
@@ -33,17 +34,23 @@ invCont.buildByInventoryId = utilities.handleErrors(async function (
 ) {
   const inventoryId = req.params.inventoryId;
   const data = await invModel.getInventoryByInventoryId(inventoryId);
-
+  const reviews = await reviewModel.getReviewsByInventoryId(inventoryId);
+  
   if (!data || data.length === 0) return next(new Error("Vehicle not found"));
-
+  
   const details = await utilities.buildVehicleDetail(data[0]);
   let nav = await utilities.getNav();
   const title = `${data[0].inv_make} ${data[0].inv_model}`;
+  const inv_id = data[0].inv_id;
+  const notice = req.flash("notice");
 
   res.render("./inventory/detail", {
     title,
     nav,
     details,
+    reviews,
+    inv_id,
+    notice,
   });
 });
 
